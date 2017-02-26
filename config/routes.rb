@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :articles
 
   #the root route to my app to redirect the user to the home page of the blog
-  root 'articles#index'
+  root 'pages#home'
 
 end
