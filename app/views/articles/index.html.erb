@@ -20,6 +20,7 @@
     <td> <%= article.desc %></td>
     <td>    <%= link_to 'Edit Article', edit_article_path(article.id) %></td>
     <td>    <%= link_to 'Show Article', article_path(article) %></td>
+    <td>    <%= link_to 'Delte Article', article_path(article), method: :delete, data: {confirm: "Are you sure to delete this article?" }  %></td>
   </tr>
 
   <% end %>
