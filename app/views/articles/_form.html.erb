@@ -1,33 +1,43 @@
 <% if @article.errors.any? %>
-
     <h2> The following errors preventing hte aricle from getting created </h2>
-
     <ul>
       <%  @article.errors.full_messages.each do |msg| %>
           <li> <%= msg %> </li>
       <% end %>
     </ul>
-
 <% end %>
 
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for(@article , :html => {class: "form-horizontal" , role: "form"}) do |f|  %>
+
+        <div class="form-group">
+          <div class="col-sm-2 control-label"> <%= f.label :title %> </div>
+          <div class="col-sm-8">
+          <%= f.text_field :title , class:"form-control" , placeholder: "Title of article" , autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-2 control-label"> <%= f.label :desc%>  </div>
+          <div class="col-sm-8">
+            <%= f.text_area :desc, class:"form-control" , rows: 10 , placeholder: "Description of the article" , autofocus: true %>
+          </div>
+        </div>
 
 
-<%= form_for @article do |f|  %>
-    <p>
-      <%= f.label :title %> <br/>
-      <%= f.text_field :title %>
-    </p>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%=  f.submit class: "btn btn-primary btn-lg" %>
+          </div>
+        </div>
+    <%end %>
 
+    <div class="col-sm-offset-4 col-sm-4">
+    [<%= link_to 'Back to articles home', articles_path %>]
+    </div>
 
-    <p>
-      <%= f.label :desc%> <br>
-      <%= f.text_field :desc %>
-    </p>
+  </div>
 
-    <p>
-      <%=  f.submit %>
-    </p>
-<%end %>
+</div>
 
-
-<%= link_to 'Back to articles home', articles_path %>
