@@ -1,11 +1,5 @@
-<% if @article.errors.any? %>
-    <h2> The following errors preventing hte aricle from getting created </h2>
-    <ul>
-      <%  @article.errors.full_messages.each do |msg| %>
-          <li> <%= msg %> </li>
-      <% end %>
-    </ul>
-<% end %>
+
+<%= render "shared/errors" , obj: @article %>
 
 <div class="row">
   <div class="col-xs-12">
@@ -24,7 +18,6 @@
             <%= f.text_area :desc, class:"form-control" , rows: 10 , placeholder: "Description of the article" , autofocus: true %>
           </div>
         </div>
-
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
