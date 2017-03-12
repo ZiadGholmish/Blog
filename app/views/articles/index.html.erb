@@ -1,7 +1,5 @@
 <h1 align="center">Listing all Articles </h1>
 
-
-
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <%= link_to 'Create a new article', new_article_path , class: "btn btn-xs btn-success" %>
@@ -23,6 +21,9 @@
           </div>
           <div class="article-body">
             <%= truncate(article.desc, length: 100) %>
+            <small>
+              Created by: <%= article.user.username if article.user %>,
+            </small>
           </div>
 
           <div class="article-actions">
