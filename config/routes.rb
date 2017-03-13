@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   #the root route to my app to redirect the user to the home page of the blog
   root 'pages#home'
 
+  get 'signup' , to: "users#new"
+  resources :users, except: [:new]
+
 end
