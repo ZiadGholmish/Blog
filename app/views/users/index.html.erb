@@ -1,0 +1,12 @@
+<h1 align="center">All Heroes</h1>
+<% @users.each do |user| %>
+    <div align="center">
+      <div class="row">
+        <ul class="listing">
+          <li><%= link_to gravatar_for(user, size: 80), user_path(user) %></li>
+          <li> <%= user.email %></li>
+          <li><%= "#{user.articles.count} articles" %></li>
+        </ul>
+      </div>
+    </div>
+<% end %>
