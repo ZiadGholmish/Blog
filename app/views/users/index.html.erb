@@ -1,4 +1,8 @@
 <h1 align="center">All Heroes</h1>
+
+<div align="center">
+  <%= will_paginate @users%>
+</div>
 <% @users.each do |user| %>
     <div align="center">
       <div class="row">
@@ -10,3 +14,7 @@
       </div>
     </div>
 <% end %>
+
+<div align="center">
+  <%= will_paginate @users%>
+</div>
