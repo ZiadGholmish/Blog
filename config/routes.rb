@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get 'signup' , to: "users#new"
+  get 'login' , to :"sessions#new"
   resources :users, except: [:new]
 
 end
