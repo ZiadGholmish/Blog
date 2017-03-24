@@ -10,19 +10,14 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
 
     if user && user.authenticate(params[:session][:password])
-
       #save the user id in the session
       session[:user_id] = user.id
       flash[:success] = "Welcome Back #{params[:session][:email]}"
       redirect_to user_path(user)
-
     else
-
       flash.now[:danger] = "Error  #{params[:session][:email]}"
       render 'new'
-
     end
-
   end
 
   def destroy
