@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   #add before action to set the user before these three methods so we can avoid code duplicate
-  before_action :set_user , only: [:edi , :show , :update]
+  before_action :set_user , only: [:edit , :show , :update]
 
   def index
     @users = User.paginate(page: params[:page] , per_page: 2)
