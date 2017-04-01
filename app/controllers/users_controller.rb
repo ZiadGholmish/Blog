@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
 
   #add before action to set the user before these three methods so we can avoid code duplicate
-  before_action :set_user , only: [:edit , :show , :update]
-  before_action :require_user , only: [:edit , :update , :destroy]
-  before_action :require_same_user , only: [:edit , :update , :destroy]
+  before_action :set_user, only: [:edit, :show, :update]
+  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_admin, only: [:destroy]
+
 
   def index
-    @users = User.paginate(page: params[:page] , per_page: 2)
+    @users = User.paginate(page: params[:page], per_page: 2)
   end
 
   def new
     @user = User.new
   end
 
-
   def show
     @user_articles = @user.articles.paginate(page: params[:page], per_page: 1)
   end
-
 
   def create
     @user = User.new(users_params)
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-
   def update
     if @user.update(users_params)
       flash[:success] = "This user updated successfully #{@user.username}"
@@ -42,6 +41,13 @@ class UsersController < ApplicationController
       render 'new'
     end
 
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "This user and all articles to it are deleted"
+    redirect_to users_path
   end
 
   def users_params
@@ -53,8 +59,15 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if(current_user != @user)
+    if (current_user != @user)
       flash[:danger] = "You are not authorized to access this page"
+      redirect_to users_path
+    end
+  end
+
+  def require_admin
+    if (!current_user.admin?)
+      flash[:danger] = "Only admin has the ability to delete users and articles"
       redirect_to users_path
     end
   end
