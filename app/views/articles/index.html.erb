@@ -1,10 +1,14 @@
 <h1 align="center">Listing all Articles </h1>
 
+
+<% if logged_in? %>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <%= link_to 'Create a new article', new_article_path, class: "btn btn-xs btn-success" %>
   </div>
 </div>
+
+<% end %>
 
 <div align="center">
   <%= will_paginate %>
