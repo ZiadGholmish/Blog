@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
 
-
   #add before action to set the user before these three methods so we can avoid code duplicate
   before_action :set_user , only: [:edit , :show , :update]
   before_action :require_user , only: [:edit , :update , :destroy]
   before_action :require_same_user , only: [:edit , :update , :destroy]
-
 
   def index
     @users = User.paginate(page: params[:page] , per_page: 2)
