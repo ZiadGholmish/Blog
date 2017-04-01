@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   #add before action to set the user before these three methods so we can avoid code duplicate
   before_action :set_user , only: [:edit , :show , :update]
-  before_action :require_user , except: [:index , :show]
-  before_action :require_same_user , except: [:index , :show]
+  before_action :require_user , only: [:edit , :update , :destroy]
+  before_action :require_same_user , only: [:edit , :update , :destroy]
 
 
   def index
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(users_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to the Ziad Blog #{@user.username}"
       redirect_to articles_path
     else
