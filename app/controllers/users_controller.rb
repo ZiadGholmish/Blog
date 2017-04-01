@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   #add before action to set the user before these three methods so we can avoid code duplicate
   before_action :set_user , only: [:edit , :show , :update]
+  before_action :require_user , except: [:index , :show]
+  before_action :require_same_user , except: [:index , :show]
+
 
   def index
     @users = User.paginate(page: params[:page] , per_page: 2)
@@ -49,4 +52,12 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
+  def require_same_user
+    if(current_user != @user)
+      flash[:danger] = "You are not authorized to access this page"
+      redirect_to users_path
+    end
+  end
+
 end

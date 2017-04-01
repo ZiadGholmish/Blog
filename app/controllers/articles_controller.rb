@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only:[:edit, :show, :update, :destroy]
+  before_action :require_user , except: [:index , :show]
+  before_action :require_same_user , except: [:index , :show]
+
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 3)
@@ -37,7 +40,6 @@ class ArticlesController < ApplicationController
     @article  = Article.find(params[:id])
   end
 
-
   def destroy
     @article.destroy
     flash[:danger] = "Article was successfully deleted"
@@ -45,13 +47,20 @@ class ArticlesController < ApplicationController
   end
 
   private
-
   def set_article
     @article = Article.find(params[:id])
   end
 
   def article_params
     params.require(:article).permit(:title, :desc)
+  end
+
+
+  def require_same_user
+    if (current_user != @article.user)
+      flash[:danger] = "You are not authorized to edit this article"
+      redirect_to root_path
+    end
   end
 
 end
