@@ -40,7 +40,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def destroy
