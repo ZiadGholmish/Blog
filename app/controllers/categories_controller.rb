@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 
-  
+
   def require_admin_user
     if !logged_in? || (logged_in? and !@current_user.admin?)
       flash[:danger] = "Only admins can perform that action"
