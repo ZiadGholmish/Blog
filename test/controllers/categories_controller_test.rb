@@ -3,8 +3,8 @@ require 'test_helper'
 class CategoriesControllerTest < ActionController::TestCase
 
   def setup
-    @category = Category.new(name: "FootBall")
-    @category.save
+    @category = Category.create(name: "FootBall")
+    @user = User.create(username: "Beko" , email: "Ziadgsdsdf@gmail.com" , admin: true , password: "password")
   end
 
   test "should get categories index" do
@@ -13,6 +13,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    session[:user_id] = @user.id
     get :new
     assert_response :success
   end
