@@ -16,6 +16,10 @@
             </small>
           </div>
 
+          <% if article.categories.any? %>
+              <p>Categories: <%= render article.categories %></p>
+          <% end %>
+
           <div class="article-actions">
 
             <%= link_to 'Show Article', article_path(article), class: "btn btn-xs btn-success" %>

@@ -3,9 +3,9 @@ $navbar-default-bg: black;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#logo{
+#logo {
 
-  float:left;
+  float: left;
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
@@ -13,20 +13,20 @@ $navbar-default-bg: black;
   font-weight: bold;
 }
 
-#logo:hover{
+#logo:hover {
 
   color: #ffff;
   text-decoration: none;
 }
 
-.center{
+.center {
 
   text-align: center;
   align-items: center;
   justify-content: center;
 }
 
-.jumbotron{
+.jumbotron {
   background-image: asset-url('home_land_image.jpg');
   background-size: cover;
   height: 600px;
@@ -34,28 +34,26 @@ $navbar-default-bg: black;
   padding-top: 20%;
 }
 
-.jumbotron h1{
+.jumbotron h1 {
   color: #fff;
-  text-align: center ;
+  text-align: center;
   margin-bottom: 30px;
   letter-spacing: -1px;
   font-weight: bold;
 }
 
-.btn-xlarge{
-font-size: 1.7em;
-  background-color: black ;
+.btn-xlarge {
+  font-size: 1.7em;
+  background-color: black;
   top: 50%;
   left: 50%;
 }
-
 
 .article-title {
 
   margin-bottom: 10px;
   margin-top: 10px;
   font-style: italic;
-
 
 }
 
@@ -65,7 +63,6 @@ font-size: 1.7em;
   margin-top: 10px;
   font-style: italic;
 
-
 }
 
 .listing {
@@ -73,5 +70,14 @@ font-size: 1.7em;
   list-style: none;
 
   padding-left: 0;
+
+}
+
+.badge {
+
+  background-color: #CEF6F5;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
 
 }
